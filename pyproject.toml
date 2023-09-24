@@ -10,7 +10,7 @@ write_to = "src/rdvc_demo_project/_version.py"
 [tool.black]
 line-length = 120
 # Keep this in sync with ISORT_SOURCE_PATHS variable in noxfile.py.
-include = '/src/.*\.pyi?$|/tests/.*\.pyi?$|/docs/.*\.pyi?$|noxfile.py'
+include = '/src/.*\.pyi?$'
 
 [tool.ruff]
 cache-dir = ".cache/ruff"
@@ -44,15 +44,6 @@ known-first-party = [
     "rdvc_demo_project",
 ]
 
-[tool.pytest.ini_options]
-cache_dir = ".cache/pytest_cache"
-minversion = "6.0"
-addopts = "-rv --color=yes"
-testpaths = ['tests']
-log_cli = true
-log_cli_level = "WARNING"
-log_cli_format = "%(levelname)s:%(name)s: %(message)s"
-
 [tool.coverage.run]
 source_pkgs = ['rdvc_demo_project']
 
@@ -67,7 +58,6 @@ exclude_lines = [
 cache_dir = ".cache/mypy_cache"
 files = [
     'src/',
-    'tests/',
     'noxfile.py',
 ]
 # Make mypy work properly with namespace package:
@@ -87,17 +77,6 @@ warn_return_any = true
 warn_unreachable = true
 warn_unused_ignores = true
 show_error_codes = true
-
-[[tool.mypy.overrides]]
-module = 'tests.*'
-disallow_untyped_defs = false
-check_untyped_defs = true
-
-[[tool.mypy.overrides]]
-module = 'noxfile'
-disallow_untyped_defs = false
-check_untyped_defs = true
-disallow_untyped_decorators = false
 
 [tool.pyright]
 reportMissingParameterType = 'warning'

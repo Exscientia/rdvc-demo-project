@@ -1,0 +1,21 @@
+---
+defaults:
+  - _self_
+  - fabric: cpu
+
+fingerprint:
+  radius: 2
+  nBits: 1024
+
+model:
+  in_channels: ${fingerprint.nBits}
+  hidden_channels:
+    - 128
+    - 128
+    - 1
+
+optimizer:
+  lr: 3e-4
+
+batch_size: 16
+num_epochs: 1

@@ -1,0 +1,23 @@
+stages:
+  01_featurise:
+    cmd: python -m rdvc_demo_project.stages.01_featurise
+    params:
+      - fingerprint
+    outs:
+      - data/featurised
+
+  02_train:
+    cmd: python -m rdvc_demo_project.stages.02_train
+    deps:
+      - data/featurised
+    params:
+      - model
+      - fabric
+      - optimizer
+      - batch_size
+      - num_epochs
+    metrics:
+      - training/metrics.json
+    plots:
+      - training/plots/metrics:
+          x: step

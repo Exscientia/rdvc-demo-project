@@ -1,0 +1,13 @@
+[core]
+analytics = false
+autostage = true
+remote = storage
+
+[hydra]
+enabled = true
+config_dir = src/rdvc_demo_project/config
+config_name = main
+
+['remote "storage"']
+# TODO replace bucket
+url = s3://some-bucket
