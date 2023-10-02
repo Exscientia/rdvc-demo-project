@@ -1,0 +1,3 @@
+[run]
+wckey = "rdvc-demo-project"
+instance = "t3.xlarge"

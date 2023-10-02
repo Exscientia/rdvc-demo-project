@@ -1,0 +1,47 @@
+schema: '2.0'
+stages:
+  01_featurise:
+    cmd: python -m rdvc_demo_project.stages.01_featurise
+    params:
+      params.yaml:
+        fingerprint:
+          radius: 2
+          nBits: 1024
+    outs:
+    - path: data/featurised
+      hash: md5
+      md5: 7aac767498c70f9aaeacf3718fce5ace.dir
+      size: 953097
+      nfiles: 3
+  02_train:
+    cmd: python -m rdvc_demo_project.stages.02_train
+    deps:
+    - path: data/featurised
+      hash: md5
+      md5: 7aac767498c70f9aaeacf3718fce5ace.dir
+      size: 953097
+      nfiles: 3
+    params:
+      params.yaml:
+        batch_size: 16
+        fabric:
+          accelerator: cpu
+        model:
+          in_channels: 1024
+          hidden_channels:
+          - 128
+          - 128
+          - 1
+        num_epochs: 1
+        optimizer:
+          lr: 0.0003
+    outs:
+    - path: training/metrics.json
+      hash: md5
+      md5: 20ea1c29f3f0c45a3297bf3d2faa971f
+      size: 61
+    - path: training/plots/metrics
+      hash: md5
+      md5: 826f4f6fbb09b5aac12bc3cffa43c629.dir
+      size: 8977
+      nfiles: 1
