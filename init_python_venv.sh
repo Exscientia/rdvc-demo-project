@@ -8,6 +8,11 @@ set -euxo pipefail
 
 echo "Setting up virtualenv"
 
+sudo add-apt-repository ppa:deadsnakes/ppa
+sudo apt-get update
+sudo apt install python3.11
+sudo apt install python3.11-venv
+
 echo $(python -V)
 echo $(which python)
 /usr/bin/python3.11 -m venv .venv
