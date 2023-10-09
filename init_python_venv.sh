@@ -8,6 +8,9 @@ set -euxo pipefail
 
 echo "Setting up virtualenv"
 
+echo $(python -V)
+echo $(which python)
+python=/usr/bin/python3.11
 python -m venv .venv
 .venv/bin/pip install --upgrade pip # >= 21.3.1
 .venv/bin/pip install -e ".[dev,typing]" --config-settings editable_mode=strict
