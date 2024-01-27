@@ -16,5 +16,5 @@ source .venv/bin/activate
 You can now run the project locally with
 
 ```bash
-dvc exp run -S fabric.accelerator=cpu 
+dvc exp run
 ```
