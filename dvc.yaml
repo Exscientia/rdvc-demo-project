@@ -2,17 +2,23 @@ stages:
   01_featurise:
     cmd: python -m rdvc_demo_project.stages.01_featurise
     params:
-      - fingerprint
+    - split
+    - features
     outs:
-      - data/featurised
+    - data/featurised
 
   02_train:
     cmd: python -m rdvc_demo_project.stages.02_train
     deps:
-      - data/featurised
+    - data/featurised
     params:
-      - model
+    - model
     plots:
-      - metrics/train/plots:
-          cache: false
-          x: step
+    - metrics/train/plots:
+        cache: false
+        x: step
+metrics:
+- metrics/train/metrics.json
+plots:
+- metrics/train/plots/metrics:
+    x: step
