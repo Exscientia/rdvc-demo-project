@@ -12,12 +12,7 @@ stages:
       - data/featurised
     params:
       - model
-      - fabric
-      - optimizer
-      - batch_size
-      - num_epochs
-    metrics:
-      - training/metrics.json
     plots:
-      - training/plots/metrics:
+      - metrics/train/plots:
+          cache: false
           x: step

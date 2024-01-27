@@ -1,21 +1,36 @@
 ---
 defaults:
   - _self_
-  - fabric: cpu
 
-fingerprint:
-  radius: 2
-  nBits: 1024
+split:
+  name: shuffle_split
+  presets:
+    train_fraction: 0.8
+    validation_fraction: 0.0
+    test_fraction: 0.2
+
+features:
+  name: morgan
+  config:
+    radius: 3
+    n_bits: 2048
 
 model:
-  in_channels: ${fingerprint.nBits}
-  hidden_channels:
-    - 128
-    - 128
-    - 1
-
-optimizer:
-  lr: 3e-4
-
-batch_size: 16
-num_epochs: 1
+  name: lightning_mlp_regressor
+  config:
+    in_channels: ${fingerprint.nBits}
+    hidden_channels:
+      - 128
+      - 128
+      - 1
+    trainer:
+      accelerator: cpu
+    datamodule:
+      train:
+        batch_size: 16
+      trainer:
+        num_epochs: 1
+    optimizer:
+      name: Adam
+      config:
+        lr: 3e-4
