@@ -13,21 +13,21 @@ stages:
           name: shuffle_split
           presets:
             train_fraction: 0.8
-            validation_fraction: 0.0
-            test_fraction: 0.2
+            validation_fraction: 0.1
+            test_fraction: 0.1
     outs:
     - path: data/featurised
       hash: md5
-      md5: d997021304016085f346500561ebc119.dir
-      size: 66662
+      md5: 9a42b49a1d04269942cee98bf0d00a52.dir
+      size: 68256
       nfiles: 4
   02_train:
     cmd: python -m rdvc_demo_project.stages.02_train
     deps:
     - path: data/featurised
       hash: md5
-      md5: d997021304016085f346500561ebc119.dir
-      size: 66662
+      md5: 9a42b49a1d04269942cee98bf0d00a52.dir
+      size: 68256
       nfiles: 4
     params:
       params.yaml:
@@ -59,6 +59,6 @@ stages:
     outs:
     - path: metrics/train/plots
       hash: md5
-      md5: 09248a4104eaa93b9c96d1c32392083b.dir
-      size: 160
+      md5: 5de00f607b51b58250664672a837bf6f.dir
+      size: 161
       nfiles: 5

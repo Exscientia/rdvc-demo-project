@@ -4,6 +4,10 @@ from molflux import splits, features
 
 from rdvc_demo_project.utils import get_git_root
 
+# Silence "DEPRECATION WARNING: please use MorganGenerator"
+# See https://github.com/rdkit/rdkit/issues/7349#issuecomment-2049140680
+from rdkit import rdBase
+rdBase.DisableLog('rdApp.warning')
 
 def main() -> None:
     config = dvc.api.params_show()
